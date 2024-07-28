@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 require("dotenv").config();
+const path=require("path")
 
 // Create a transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
@@ -20,7 +21,17 @@ let mailOptions = {
   to: 'kaushikdange1993@gmail.com', // List of recipients
   subject: 'Hello from Kaushik', // Subject line
   text: 'Hello world?', // Plain text body
-  html: '<b>Hello world?</b>' // HTML body
+  html: '<b>Hello world?</b>', // HTML body
+  attachments:[{
+    filename:'Image.jpg',
+    path:path.join(__dirname, 'Image.jpg'),
+    contentType:'image/jpg'
+  },
+  {
+    filename:'Kaushik.pdf',
+    path:path.join(__dirname, 'Kaushik.pdf'),
+    contentType:'application/pdf'
+  }]
 };
 
 // // Send mail with defined transport object
